@@ -10,7 +10,7 @@ import {
 export const caseStudies: CaseStudy[] = [
   {
     title: "E-Commerce Redesign",
-    category: "UX/UI Design",
+    category: "Product Manager",
     role: "Lead Designer",
     duration: "3 months",
     image: "🛍️",
