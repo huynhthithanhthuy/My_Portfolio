@@ -7,6 +7,70 @@ import {
   Tool,
 } from "../types";
 
+export const aboutData = {
+  sectionLabel: "About Me",
+  heading: "Passionate about creating",
+  headingAccent: "meaningful experiences",
+  description: [
+    "I'm a fourth-year Management Information Systems student at Ho Chi Minh City Open University and a junior UX/UI Designer. I'm interested in how design, technology, and business come together to create meaningful digital products.",
+    "Through my studies and personal projects, I've gained experience in UX research, user flows, wireframing, and UI design. My background in information systems helps me understand product logic and how users interact with systems.",
+  ],
+  quickInfo: [
+    { icon: "GraduationCap", label: "Management Information Systems" },
+    { icon: "Sparkles", label: "3.6 GPA" },
+  ],
+  quote: "Good design is simple, purposeful, and focused on real user needs.",
+  image: "/images/Profile.jpg",
+  imageAlt: "Thanh Thuy - UX/UI Designer",
+  cvLink: "/cv.pdf",
+  ctaText: "Download CV",
+};
+
+
+export const experienceData = {
+  sectionLabel: "Journey",
+  heading: "Experience",
+  subheading: "My professional journey in design",
+  experience: {
+    role: "UX/UI Design Intern",
+    company: "Tech Company Name",
+    period: "Jan 2024 - Present",
+    description:
+      "Collaborated with the design team to create user-centered interfaces for mobile and web applications. Conducted user research, developed wireframes and prototypes, and contributed to the design system.",
+  },
+};
+
+
+export const worksData = {
+  sectionLabel: "Portfolio",
+  heading: "Featured Projects",
+  subheading: "A collection of projects where research meets creativity",
+  projects: [
+    {
+      id: 1,
+      badge: "Mobile App Design",
+      title: "Discover Movies Made Simple",
+      description:
+        "A movie streaming app designed to help users easily discover, explore, and enjoy films they love. The app focuses on clear navigation, personalized recommendations, and a smooth watching experience across devices.",
+      tags: ["UI/UX Design", "Mobile App", "Movie Streaming"],
+      image: "/images/behance-1.png",
+      link: "https://example.com/project-1",
+      year: "2025",
+    },
+    {
+      id: 2,
+      badge: "Dashboard UI",
+      title: "Simplify Your",
+      description:
+        "An intuitive analytics dashboard that transforms complex data into actionable insights. Built with a focus on clarity and ease of use for business professionals.",
+      tags: ["Web Design", "Dashboard", "Analytics"],
+      image: "/images/project-2.jpg",
+      link: "https://example.com/project-2",
+      year: "2024",
+    },
+  ],
+};
+
 export const caseStudies: CaseStudy[] = [
   {
     title: "E-Commerce Redesign",

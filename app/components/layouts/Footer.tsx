@@ -5,11 +5,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 px-6 bg-slate-900 text-white">
+    <footer className="bg-white py-12 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <p className="text-slate-400">
+            <p className="text-slate-700">
               © {currentYear} {personalInfo.name}. All rights reserved.
             </p>
             <p className="text-sm text-slate-500 mt-1">
@@ -20,21 +20,21 @@ export default function Footer() {
           <div className="flex gap-6">
             <a
               href={personalInfo.linkedin}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-slate-600 hover:text-slate-900 transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href={personalInfo.github}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-slate-600 hover:text-slate-900 transition-colors"
               aria-label="GitHub"
             >
               <Github className="w-5 h-5" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="text-slate-400 hover:text-white transition-colors"
+              className="text-slate-600 hover:text-slate-900 transition-colors"
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />

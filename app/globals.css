@@ -3,16 +3,21 @@
 @theme {
   --color-background: #ffffff;
   --color-foreground: #0a0a0a;
-  --color-border: #e5e5e5;
 }
 
 @layer base {
   * {
-    @apply border-border;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
+  html,
   body {
     @apply bg-background text-foreground;
+    /* Quan trọng: không có padding/margin mặc định */
+    margin: 0;
+    padding: 0;
   }
 }
 
