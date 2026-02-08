@@ -1,16 +1,23 @@
-// Types for portfolio data
-
 export interface CaseStudy {
+  id: number;
+  badge: string;
   title: string;
-  category: string;
-  role: string;
-  duration: string;
+  description: string;
+  tags: string[];
   image: string;
-  color: string;
-  problem: string;
-  solution: string;
-  outcome: string;
   link: string;
+  year: string;
+}
+
+export interface Experience {
+  id: number;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  responsibilities?: string[];
+  technologies?: string[];
+  type?: "Full-time" | "Part-time" | "Internship" | "Freelance";
 }
 
 export interface ProcessStep {
@@ -22,24 +29,26 @@ export interface ProcessStep {
 
 export interface Skill {
   name: string;
-  level: number;
+  icon: string;
+  description: string;
 }
 
 export interface Tool {
   name: string;
-  icon: string;
-}
-
-export interface Experience {
-  role: string;
-  company: string;
-  period: string;
+  logo: string;
   description: string;
 }
+
 
 export interface Testimonial {
   quote: string;
   name: string;
   role: string;
   company: string;
+}
+
+export interface ContactData {
+  heading: string;
+  subheading: string;
+  description: string;
 }

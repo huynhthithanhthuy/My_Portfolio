@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { Mail, Linkedin, Github } from "lucide-react";
-import { personalInfo } from "@/app/data/data";
+import { personalInfo, contactData } from "@/app/data/data";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -38,7 +38,7 @@ export default function ContactSection() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-white/40 rounded-full blur-[100px] -translate-y-1/2" />
           <div className="absolute top-1/4 left-1/3 w-64 h-64 bg-white/30 rounded-full blur-[80px]" />
           <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-sky-400/40 rounded-full blur-[60px]" />
-          
+
           {/* Darker areas for contrast */}
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-sky-500/30 rounded-full blur-[80px]" />
           <div className="absolute top-1/2 right-0 w-64 h-64 bg-sky-500/20 rounded-full blur-[70px]" />
@@ -59,45 +59,39 @@ export default function ContactSection() {
               variants={fadeInUp}
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"
             >
-              Let&apos;s build something
-              <span className="block">meaningful together</span>
+              {contactData.heading}
+              <span className="block">{contactData.subheading}</span>
             </motion.h2>
-            
+
             <motion.p
               variants={fadeInUp}
               className="text-white/80 text-lg mb-10 max-w-xl mx-auto"
             >
-              I&apos;m always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
+              {contactData.description}
             </motion.p>
 
-            {/* Email Pill Button */}
+            {/* Email Display */}
             <motion.div variants={scaleIn} className="flex justify-center mb-10">
-              <a
-                href={`mailto:${personalInfo.email}`}
+              <div
                 className="
-                  inline-flex items-center gap-3
-                  bg-slate-800/90 backdrop-blur-sm
-                  pl-6 pr-2 py-2
-                  rounded-full
-                  shadow-xl shadow-black/20
-                  hover:bg-slate-800 hover:scale-105
-                  transition-all duration-300
-                  group
-                "
+                inline-flex items-center
+                bg-white/30 backdrop-blur-sm border border-white/40
+                px-6 py-3
+                rounded-full
+              "
               >
-                <span className="text-white/70 text-sm md:text-base">{personalInfo.email}</span>
-                <span className="bg-white text-slate-800 px-4 py-2 rounded-full font-medium text-sm flex items-center gap-2 group-hover:bg-sky-50 transition-colors">
-                  <Mail className="w-4 h-4" />
-                  Contact
+                <span className="text-white text-sm md:text-base font-medium">
+                  {personalInfo.email}
                 </span>
-              </a>
+              </div>
             </motion.div>
 
             {/* Social Links */}
             <motion.div variants={fadeInUp} className="flex justify-center gap-4">
               <a
                 href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 flex items-center justify-center text-slate-700 hover:bg-white/50 hover:scale-110 transition-all duration-300"
                 aria-label="LinkedIn"
               >
@@ -105,6 +99,8 @@ export default function ContactSection() {
               </a>
               <a
                 href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 flex items-center justify-center text-slate-700 hover:bg-white/50 hover:scale-110 transition-all duration-300"
                 aria-label="GitHub"
               >

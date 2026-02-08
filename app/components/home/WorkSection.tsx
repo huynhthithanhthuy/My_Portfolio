@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { worksData } from "@/app/data/data";
+import { caseStudies } from "@/app/data/data";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -44,18 +44,18 @@ export default function WorksSection() {
           variants={fadeInUp}
           className="text-center mb-20"
         >
-          <h3 className="text-2xl text-sky-500 font-medium mb-4">{worksData.sectionLabel}</h3>
+          <h3 className="text-2xl text-sky-500 font-medium mb-4">Case Studies</h3>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            {worksData.heading}
+            Featured Works
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            {worksData.subheading}
+            Explore my latest design projects and case studies
           </p>
         </motion.div>
 
         {/* Projects List */}
         <div className="space-y-32">
-          {worksData.projects.map((project, index) => {
+          {caseStudies.map((project, index) => {
             const isEven = index % 2 === 0;
 
             return (

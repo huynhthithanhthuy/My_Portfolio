@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { Briefcase } from "lucide-react";
-import { experienceData } from "@/app/data/data";
+import { experiences } from "@/app/data/data";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -11,6 +11,12 @@ const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const staggerContainer: Variants = {
+  visible: {
+    transition: { staggerChildren: 0.2 },
   },
 };
 
@@ -52,7 +58,7 @@ export default function ExperienceSection() {
         className="absolute bottom-40 left-[30%] w-4 h-4 rounded-full bg-sky-300/40"
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial="hidden"
@@ -61,69 +67,116 @@ export default function ExperienceSection() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h3 className="text-slate-500 font-medium mb-4">{experienceData.sectionLabel}</h3>
+          <h3 className="text-2xl text-sky-500 font-medium mb-4">Journey</h3>
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            {experienceData.heading}
+            Experience
           </h2>
           <p className="text-lg text-slate-500 max-w-xl mx-auto">
-            {experienceData.subheading}
+            My professional journey in design
           </p>
         </motion.div>
 
-        {/* Experience Card */}
+        {/* Experience Cards */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          variants={scaleIn}
-          className="flex justify-center"
+          variants={staggerContainer}
+          className="space-y-8"
         >
-          <div className="group w-full max-w-xl">
-            <div
-              className="
-                relative p-[2px] rounded-3xl
-                bg-gradient-to-br from-sky-100 via-white to-indigo-100
-                shadow-[0_8px_32px_rgba(56,189,248,0.12),0_4px_16px_rgba(99,102,241,0.08)]
-                group-hover:shadow-[0_16px_48px_rgba(56,189,248,0.18),0_8px_24px_rgba(99,102,241,0.12)]
-                transition-all duration-500
-              "
+          {experiences.map((exp) => (
+            <motion.div
+              key={exp.id}
+              variants={scaleIn}
+              className="group"
             >
-              {/* Shimmer Effect */}
-              <div className="absolute inset-0 rounded-3xl overflow-hidden">
-                <div
-                  className="
-                    absolute inset-0
-                    bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.8)_50%,transparent_100%)]
-                    translate-x-[-100%]
-                    group-hover:translate-x-[100%]
-                    transition-transform duration-1000 ease-in-out
-                  "
-                />
-              </div>
-
-              {/* Inner Content */}
-              <div className="relative rounded-[22px] p-8 bg-white">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg shadow-sky-500/30">
-                      <Briefcase className="w-7 h-7 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-slate-900">{experienceData.experience.role}</h4>
-                      <p className="text-sky-600 font-medium">{experienceData.experience.company}</p>
-                    </div>
-                  </div>
-                  <span className="text-sm text-slate-500 bg-slate-100 px-4 py-2 rounded-full w-fit">
-                    {experienceData.experience.period}
-                  </span>
+              <div
+                className="
+                  relative p-[2px] rounded-3xl
+                  bg-gradient-to-br from-sky-100 via-white to-indigo-100
+                  shadow-[0_8px_32px_rgba(56,189,248,0.12),0_4px_16px_rgba(99,102,241,0.08)]
+                  group-hover:shadow-[0_16px_48px_rgba(56,189,248,0.18),0_8px_24px_rgba(99,102,241,0.12)]
+                  transition-all duration-500
+                "
+              >
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                  <div
+                    className="
+                      absolute inset-0
+                      bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.8)_50%,transparent_100%)]
+                      translate-x-[-100%]
+                      group-hover:translate-x-[100%]
+                      transition-transform duration-1000 ease-in-out
+                    "
+                  />
                 </div>
 
-                <p className="text-slate-600 leading-relaxed text-justify">
-                  {experienceData.experience.description}
-                </p>
+                {/* Inner Content */}
+                <div className="relative rounded-[22px] p-8 bg-white">
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg shadow-sky-500/30">
+                        <Briefcase className="w-7 h-7 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-slate-900">{exp.role}</h4>
+                        <p className="text-sky-600 font-medium">{exp.company}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {exp.type && (
+                        <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                          {exp.type}
+                        </span>
+                      )}
+                      <span className="text-sm text-slate-500 bg-slate-100 px-4 py-2 rounded-full whitespace-nowrap">
+                        {exp.period}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-slate-600 leading-relaxed mb-6 text-justify">
+                    {exp.description}
+                  </p>
+
+                  {/* Responsibilities */}
+                  {exp.responsibilities && exp.responsibilities.length > 0 && (
+                    <div className="mb-6">
+                      <h5 className="text-sm font-semibold text-slate-700 mb-3">Key Responsibilities:</h5>
+                      <ul className="space-y-2">
+                        {exp.responsibilities.map((responsibility, index) => (
+                          <li key={index} className="flex items-start gap-2 text-slate-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0" />
+                            <span className="text-sm leading-relaxed">{responsibility}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Technologies */}
+                  {exp.technologies && exp.technologies.length > 0 && (
+                    <div>
+                      <h5 className="text-sm font-semibold text-slate-700 mb-3">Tools & Technologies:</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.technologies.map((tech, index) => (
+                          <span
+                            key={index}
+                            className="text-xs text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

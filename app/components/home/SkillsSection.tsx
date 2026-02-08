@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
+import { skills, tools } from "@/app/data/data";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -26,58 +28,32 @@ const floatIn: Variants = {
   },
 };
 
-// Combined Skills & Tools data
-const expertise = [
-  {
-    step: "01",
-    title: "UI Design",
-    description: "Creating beautiful, intuitive interfaces with Figma and Adobe XD.",
-    icon: "🎨",
-    floatDelay: 0,
-    floatDuration: 4,
-    rotation: -3,
-  },
-  {
-    step: "02",
-    title: "UX Research",
-    description: "Understanding user needs through research, interviews, and testing.",
-    icon: "🔍",
-    floatDelay: 0.5,
-    floatDuration: 4.5,
-    rotation: 2,
-  },
-  {
-    step: "03",
-    title: "Prototyping",
-    description: "Building interactive prototypes to validate ideas and gather feedback.",
-    icon: "⚡",
-    floatDelay: 1,
-    floatDuration: 3.5,
-    rotation: -2,
-  },
-  {
-    step: "04",
-    title: "Design Systems",
-    description: "Creating scalable component libraries and design guidelines.",
-    icon: "📦",
-    floatDelay: 0.3,
-    floatDuration: 4.2,
-    rotation: 3,
-  },
-  {
-    step: "05",
-    title: "Visual Design",
-    description: "Crafting graphics and illustrations with Photoshop and Illustrator.",
-    icon: "✨",
-    floatDelay: 0.8,
-    floatDuration: 3.8,
-    rotation: -1,
-  },
-];
-
 export default function SkillsSection() {
+  // Combine skills and tools with metadata
+  const skillCards = skills.map((skill, index) => ({
+    type: 'skill' as const,
+    name: skill.name,
+    icon: skill.icon,
+    description: skill.description,
+    floatDelay: index * 0.3,
+    floatDuration: 4 + (index * 0.2),
+    rotation: [-3, 2, -2, 3, -1][index] || 0,
+  }));
+
+  const toolCards = tools.map((tool, index) => ({
+    type: 'tool' as const,
+    name: tool.name,
+    logo: tool.logo,
+    description: tool.description,
+    floatDelay: (index + skills.length) * 0.3,
+    floatDuration: 3.8 + (index * 0.3),
+    rotation: [2, -2, 1][index] || 0,
+  }));
+
+  const allCards = [...skillCards, ...toolCards];
+
   return (
-    <section id="skills" className="relative py-24 px-6 lg:px-12 xl:px-20 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
+    <section id="skills" className="relative py-12 px-6 lg:px-12 xl:px-20 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
       
       {/* Decorative Gradient Shapes */}
       <div className="absolute top-20 left-[5%] w-32 h-32 rounded-full bg-gradient-to-br from-sky-200/60 to-sky-300/40 blur-2xl" />
@@ -138,17 +114,17 @@ export default function SkillsSection() {
           className="relative"
         >
           <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
-            {expertise.map((item, index) => (
+            {allCards.map((card, index) => (
               <motion.div
                 key={index}
                 variants={floatIn}
                 animate={{ y: [-8, 8, -8] }}
                 transition={{
                   y: {
-                    duration: item.floatDuration,
+                    duration: card.floatDuration,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: item.floatDelay,
+                    delay: card.floatDelay,
                   },
                 }}
                 className="group"
@@ -159,14 +135,14 @@ export default function SkillsSection() {
                 {/* Liquid Glass Card with Blue Shadow */}
                 <div
                   className="
-                    relative w-[200px] p-[2px] rounded-3xl
+                    relative w-[220px] p-[2px] rounded-3xl
                     bg-gradient-to-br from-white/80 via-sky-50/50 to-white/80
                     shadow-[0_8px_32px_rgba(56,189,248,0.15),0_4px_16px_rgba(99,102,241,0.1)]
                     group-hover:shadow-[0_20px_50px_rgba(56,189,248,0.25),0_10px_30px_rgba(99,102,241,0.15)]
                     group-hover:-translate-y-2
                     transition-all duration-500
                   "
-                  style={{ transform: `rotate(${item.rotation}deg)` }}
+                  style={{ transform: `rotate(${card.rotation}deg)` }}
                 >
                   {/* Shimmer Effect */}
                   <div className="absolute inset-0 rounded-3xl overflow-hidden">
@@ -189,22 +165,29 @@ export default function SkillsSection() {
                       border border-sky-100/50
                     "
                   >
-                    {/* Step Number */}
-                    <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center shadow-lg shadow-sky-500/40">
-                      <span className="text-white text-sm font-bold">{item.step}</span>
-                    </div>
-
-                    {/* Icon */}
-                    <div className="text-4xl mb-4">{item.icon}</div>
+                    {/* Icon or Logo */}
+                    {card.type === 'skill' ? (
+                      <div className="text-4xl mb-4 text-center">{card.icon}</div>
+                    ) : (
+                      <div className="mb-4 flex items-center justify-center h-14">
+                        <Image
+                          src={card.logo}
+                          alt={card.name}
+                          width={56}
+                          height={56}
+                          className="object-contain group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                    )}
 
                     {/* Title */}
-                    <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-700 transition-colors">
-                      {item.title}
+                    <h4 className="text-md font-bold text-slate-900 mb-2 text-center group-hover:text-sky-700 transition-colors">
+                      {card.name}
                     </h4>
 
                     {/* Description */}
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {item.description}
+                    <p className="text-sm text-slate-600 leading-relaxed text-center">
+                      {card.description}
                     </p>
                   </div>
                 </div>

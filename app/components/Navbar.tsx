@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -47,12 +48,17 @@ export default function Navbar() {
             onClick={() => scrollToSection('home')}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all duration-500 ${
+            <div className={`relative w-10 h-10 rounded-full overflow-hidden shadow-lg transition-all duration-500 ${
               isScrolled 
-                ? 'bg-slate-900 shadow-slate-500/20' 
-                : 'bg-white/20 backdrop-blur-sm shadow-white/20'
+                ? 'shadow-slate-500/20' 
+                : 'shadow-white/20'
             }`}>
-              <span className="text-white text-base font-bold">T</span>
+              <Image
+                src="/images/logo.png"
+                alt="Thanh Thuy Logo"
+                fill
+                className="object-cover"
+              />
             </div>
             <span className={`font-semibold text-base tracking-tight transition-colors duration-500 ${
               isScrolled ? 'text-slate-700' : 'text-white'
@@ -74,6 +80,16 @@ export default function Navbar() {
               About
             </button>
             <button
+              onClick={() => scrollToSection('experience')}
+              className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
+                isScrolled 
+                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              Experience
+            </button>
+            <button
               onClick={() => scrollToSection('works')}
               className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
                 isScrolled 
@@ -81,17 +97,7 @@ export default function Navbar() {
                   : 'text-white/90 hover:text-white hover:bg-white/10'
               }`}
             >
-              Works
-            </button>
-            <button
-              onClick={() => scrollToSection('process')}
-              className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Process
+              Project
             </button>
             <button
               onClick={() => scrollToSection('skills')}
@@ -157,6 +163,16 @@ export default function Navbar() {
               About
             </button>
             <button
+              onClick={() => scrollToSection('experience')}
+              className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
+                isScrolled 
+                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' 
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              Experience
+            </button>
+            <button
               onClick={() => scrollToSection('works')}
               className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
                 isScrolled 
@@ -164,17 +180,7 @@ export default function Navbar() {
                   : 'text-white/90 hover:text-white hover:bg-white/10'
               }`}
             >
-              Works
-            </button>
-            <button
-              onClick={() => scrollToSection('process')}
-              className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Process
+              Project
             </button>
             <button
               onClick={() => scrollToSection('skills')}

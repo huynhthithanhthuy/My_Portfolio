@@ -101,14 +101,23 @@ export default function HeroSection() {
                 className="text-base sm:text-lg text-white max-w-lg leading-relaxed mb-10"
               />
 
-              <motion.div variants={fadeInUp}>
+              <motion.div variants={fadeInUp} className="flex gap-4">
                 <a
                   href="#contact"
                   className="inline-flex items-center gap-2 bg-white text-slate-800 px-6 py-3 rounded-full font-medium hover:bg-white/90 hover:scale-105 transition-all shadow-lg shadow-black/10"
                 >
                   Contact
                 </a>
+                
+                <a
+                  href="/cv.pdf"
+                  download
+                  className="inline-flex items-center gap-2 bg-slate-800 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 hover:scale-105 transition-all shadow-lg shadow-black/10"
+                >
+                  Download CV
+                </a>
               </motion.div>
+              
 
             </motion.div>
 

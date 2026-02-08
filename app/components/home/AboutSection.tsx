@@ -112,17 +112,6 @@ export default function AboutSection() {
             >
               <p className="text-slate-500 italic">&quot;{aboutData.quote}&quot;</p>
             </motion.div>
-
-            {/* CTA Button */}
-            <div className="pt-4">
-              <a
-                href={aboutData.cvLink}
-                target="_blank"
-                className="inline-flex items-center gap-2 bg-slate-800 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 hover:scale-105 transition-all"
-              >
-                {aboutData.ctaText}
-              </a>
-            </div>
           </motion.div>
         </motion.div>
       </div>
