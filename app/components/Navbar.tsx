@@ -54,7 +54,7 @@ export default function Navbar() {
                 : 'shadow-white/20'
             }`}>
               <Image
-                src="/images/logo.png"
+                src="/images/mylogo.png"
                 alt="Thanh Thuy Logo"
                 fill
                 className="object-cover"
@@ -119,22 +119,35 @@ export default function Navbar() {
                 ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
                 : 'text-white/90 hover:text-white hover:bg-white/10'
             }`}
+            aria-label="Toggle menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMobileMenuOpen ? (
+            {isMobileMenuOpen ? (
+              // Close icon (X)
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
+              </svg>
+            ) : (
+              // Hamburger icon
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+              </svg>
+            )}
           </button>
         </div>
       </div>
@@ -191,16 +204,6 @@ export default function Navbar() {
               }`}
             >
               Skills
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className={`text-sm font-semibold px-4 py-3 rounded-xl transition-all duration-200 mt-2 ${
-                isScrolled 
-                  ? 'bg-slate-900 text-white hover:bg-slate-800' 
-                  : 'bg-white text-slate-900 hover:bg-white/90'
-              }`}
-            >
-              Contact
             </button>
           </div>
         </div>

@@ -35,6 +35,11 @@ const cardImages = [
 ];
 
 export default function HeroSection() {
+  const scrollToContact = () => {
+    const element = document.getElementById("contact");
+    element?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image */}
@@ -77,8 +82,6 @@ export default function HeroSection() {
               animate="visible"
               variants={stagger}
             >
-              {/* Text Content - 3 separate elements */}
-
               <motion.p
                 variants={fadeInUp}
                 className="text-2xl sm:text-4xl font-medium text-white/70 mb-6"
@@ -102,12 +105,12 @@ export default function HeroSection() {
               />
 
               <motion.div variants={fadeInUp} className="flex gap-4">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 bg-white text-slate-800 px-6 py-3 rounded-full font-medium hover:bg-white/90 hover:scale-105 transition-all shadow-lg shadow-black/10"
+                <button
+                  onClick={scrollToContact}
+                  className="inline-flex items-center gap-2 bg-white text-slate-800 px-6 py-3 rounded-full font-medium hover:bg-white/90 hover:scale-105 transition-all shadow-lg shadow-black/10 cursor-pointer"
                 >
                   Contact
-                </a>
+                </button>
                 
                 <a
                   href="/cv.pdf"
@@ -117,7 +120,6 @@ export default function HeroSection() {
                   Download CV
                 </a>
               </motion.div>
-              
 
             </motion.div>
 

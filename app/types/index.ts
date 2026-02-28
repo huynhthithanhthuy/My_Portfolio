@@ -11,13 +11,16 @@ export interface CaseStudy {
 
 export interface Experience {
   id: number;
-  role: string;
-  company: string;
-  period: string;
+  category: string;          
+  title: string;
   description: string;
-  responsibilities?: string[];
-  technologies?: string[];
-  type?: "Full-time" | "Part-time" | "Internship" | "Freelance";
+  date: string;               
+  role?: string;             
+  duration?: string;         
+  tags: string[];
+  tools?: string[];          
+  image: string;
+  link: string;
 }
 
 export interface ProcessStep {
@@ -39,16 +42,15 @@ export interface Tool {
   description: string;
 }
 
+export interface ContactData {
+  heading: string;
+  subheading: string;
+  description: string;
+}
 
 export interface Testimonial {
   quote: string;
   name: string;
   role: string;
   company: string;
-}
-
-export interface ContactData {
-  heading: string;
-  subheading: string;
-  description: string;
 }

@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { caseStudies } from "@/app/data/data";
+import { projects } from "@/app/data/data";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -55,7 +55,7 @@ export default function WorksSection() {
 
         {/* Projects List */}
         <div className="space-y-32">
-          {caseStudies.map((project, index) => {
+          {projects.map((project, index) => {
             const isEven = index % 2 === 0;
 
             return (
@@ -112,40 +112,59 @@ export default function WorksSection() {
                 {/* Content */}
                 <motion.div
                   variants={isEven ? fadeInRight : fadeInLeft}
-                  className={`space-y-6 ${isEven ? "" : "lg:col-start-1 lg:row-start-1"}`}
+                  className={`space-y-5 ${isEven ? "" : "lg:col-start-1 lg:row-start-1"}`}
                 >
-                  {/* Badge & Year */}
-                  <div className="flex items-center gap-3">
+                  {/* Category & Date */}
+                  <div className="flex flex-wrap items-center gap-3">
                     <span className="inline-flex items-center gap-2 bg-slate-100 rounded-full px-4 py-1.5">
                       <span className="w-2 h-2 bg-emerald-400 rounded-full" />
                       <span className="text-sm font-medium text-slate-600">
-                        {project.badge}
+                        {project.category}
                       </span>
                     </span>
-                    <span className="text-sm text-slate-400">{project.year}</span>
+                    <span className="text-sm text-slate-400">{project.date}</span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                  <h3 className="text-4xl lg:text-3xl font-bold text-slate-900 leading-tight">
                     {project.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-600 leading-relaxed text-lg text-justify">
+                  <p className="text-slate-600 leading-relaxed text-md text-justify">
                     {project.description}
                   </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="text-sm text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Role & Duration */}
+                  <div className="flex flex-wrap gap-4 text-sm">
+                    {project.role && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-400">Role:</span>
+                        <span className="text-slate-700 font-medium">{project.role}</span>
+                      </div>
+                    )}
+                    {project.duration && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-400">Duration:</span>
+                        <span className="text-slate-700 font-medium">{project.duration}</span>
+                      </div>
+                    )}
                   </div>
+
+                  {/* Tools */}
+                  {project.tools && project.tools.length > 0 && (
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm text-slate-400">Tools:</span>
+                      {project.tools.map((tool, toolIndex) => (
+                        <span
+                          key={toolIndex}
+                          className="text-xs text-sky-600 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-100"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* CTA Link */}
                   <a

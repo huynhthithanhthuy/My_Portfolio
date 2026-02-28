@@ -1,5 +1,5 @@
 import {
-  CaseStudy,
+  Project,
   Experience,
   ProcessStep,
   Skill,
@@ -36,73 +36,42 @@ export const experiences: Experience[] = [
     period: "Oct 2025 - Jan 2026",
     type: "Internship",
     description:
-      "Focused on enhancing and refining existing user interfaces for web applications. Worked closely with the team to understand business requirements and user flows before translating them into clearer, more usable UI designs. Occasionally researched and proposed new UI ideas based on product and leadership requirements.",
+      "Worked across web and mobile platforms to enhance product usability and support evolving business needs.",
     responsibilities: [
-      "Redesigned screens to enhance usability, clarity, and visual consistency",
-      "Collaborated with team members to understand business logic and user flows before designing",
-      "Conducted research and explored design references when proposing new UI ideas",
-      "Created UI mockups based on product and management requirements",
+      "Redesigned the recruitment website to enhance clarity and user experience",
+      "Redesigned the HR mobile application for better usability and workflow efficiency",
+      "Designed additional UI screens based on client and stakeholder requirements",
+      "Collaborated closely with BA and developers to understand business logic and user flows",
     ],
-    technologies: ["Figma", "Adobe XD", "Sketch", "Protopie"],
   },
 ];
 
-
-export const caseStudies: CaseStudy[] = [
+export const projects: Project[] = [
   {
     id: 1,
-    badge: "Mobile App Design",
-    title: "Discover Movies Made Simple",
+    category: "Mobile App Design",
+    title: "Reely - Discover Movies Made Simple",
     description:
       "A movie streaming app designed to help users easily discover, explore, and enjoy films they love. The app focuses on clear navigation, personalized recommendations, and a smooth watching experience across devices.",
-    tags: ["UI/UX Design", "Mobile App", "5-6 weeks"],
-    image: "/images/behance-1.png",
+    date: "Oct - Nov, 2025",
+    role: "UI/UX Designer",
+    duration: "5-6 weeks",
+    tools: ["Figma", "Photoshop", "Illustrator"],
+    image: "/images/project-01.png",
     link: "https://www.behance.net/gallery/243737657/Reely-Movie-Streaming-App",
-    year: "2025",
   },
   {
     id: 2,
-    badge: "Dashboard UI",
-    title: "Simplify Your Analytics",
+    category: "Dashboard UI",
+    title: "FoodiOS - Smart Restaurant Ordering",
     description:
-      "An intuitive analytics dashboard that transforms complex data into actionable insights. Built with a focus on clarity and ease of use for business professionals.",
-    tags: ["Web Design", "Dashboard", "Analytics"],
-    image: "/images/project-2.jpg",
-    link: "https://example.com/project-2",
-    year: "2024",
-  },
-];
-
-export const designProcess: ProcessStep[] = [
-  {
-    step: "01",
-    title: "Discover",
-    description: "User research, stakeholder interviews, competitive analysis",
-    icon: "🔍",
-  },
-  {
-    step: "02",
-    title: "Define",
-    description: "User personas, journey maps, problem statements",
-    icon: "🎯",
-  },
-  {
-    step: "03",
-    title: "Ideate",
-    description: "Brainstorming, sketching, information architecture",
-    icon: "💡",
-  },
-  {
-    step: "04",
-    title: "Design",
-    description: "Wireframes, prototypes, visual design, design systems",
-    icon: "✨",
-  },
-  {
-    step: "05",
-    title: "Test",
-    description: "Usability testing, feedback loops, iterations",
-    icon: "🧪",
+      "A seamless QR ordering experience that connects customers and staff in one real-time system. Built with a focus on clarity, speed, and operational efficiency to reduce manual processes and improve service flow.",
+    date: "Dec,2025 - Feb,2026",
+    role: "UX/UI Designer",
+    duration: "8-9 weeks",
+    tools: ["Figma", "Adobe XD"],
+    image: "/images/project-02.png",
+    link: "https://www.behance.net/gallery/244896565/FoodiOS-Smart-Table-Ordering-for-Modern-Restaurants",
   },
 ];
 
@@ -127,11 +96,6 @@ export const skills: Skill[] = [
     icon: "✏️",
     description: "Structuring layouts and user flows.",
   },
-  {
-    name: "Usability Testing",
-    icon: "👥",
-    description: "Collecting feedback to improve usability.",
-  },
 ];
 
 export const tools: Tool[] = [
@@ -145,6 +109,11 @@ export const tools: Tool[] = [
     logo: "/images/canva.png",
     description: "Quick visuals and simple layouts.",
   },
+    {
+    name: "Capcut",
+    logo: "/images/capcut.jpg",
+    description: "Basic short-form video editing.",
+  },
   {
     name: "Photoshop",
     logo: "/images/photoshop.png",
@@ -157,10 +126,9 @@ export const personalInfo = {
   name: "Thanh Thuy",
   role: "UX/UI Designer",
   email: "huynhthuyth29@email.com",
-  tagline:
-    "Designing meaningful digital experiences that solve real user problems.",
-  linkedin: "#",
-  github: "#",
+  tagline: "...",
+  facebook: "https://www.facebook.com/bethyy29/",  
+  behance: "https://www.behance.net/thuhunhththanh",   
 };
 
 export const contactData: ContactData = {
