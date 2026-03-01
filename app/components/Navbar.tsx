@@ -54,7 +54,7 @@ export default function Navbar() {
                 : 'shadow-white/20'
             }`}>
               <Image
-                src="/images/mylogo.png"
+                src="/images/Logo.png"
                 alt="Thanh Thuy Logo"
                 fill
                 className="object-cover"
