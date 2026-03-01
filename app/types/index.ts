@@ -1,26 +1,25 @@
-export interface CaseStudy {
+export interface Project {
   id: number;
-  badge: string;
+  category: string;
   title: string;
   description: string;
-  tags: string[];
+  date: string;
+  role?: string;
+  duration?: string;
+  tools?: string[];
   image: string;
   link: string;
-  year: string;
 }
 
 export interface Experience {
   id: number;
-  category: string;          
-  title: string;
+  role: string;
+  company: string;
+  period: string;
   description: string;
-  date: string;               
-  role?: string;             
-  duration?: string;         
-  tags: string[];
-  tools?: string[];          
-  image: string;
-  link: string;
+  responsibilities?: string[];
+  technologies?: string[];
+  type?: "Full-time" | "Part-time" | "Internship" | "Freelance";
 }
 
 export interface ProcessStep {

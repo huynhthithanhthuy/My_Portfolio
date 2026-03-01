@@ -23,8 +23,6 @@ export const aboutData = {
   quote: "Good design is simple, purposeful, and focused on real user needs.",
   image: "/images/Profile.jpg",
   imageAlt: "Thanh Thuy - UX/UI Designer",
-  cvLink: "/cv.pdf",
-  ctaText: "Download CV",
 };
 
 
@@ -36,11 +34,10 @@ export const experiences: Experience[] = [
     period: "Oct 2025 - Jan 2026",
     type: "Internship",
     description:
-      "Worked across web and mobile platforms to enhance product usability and support evolving business needs.",
+      "At Lac Viet, I worked as a UX/UI Designer focusing on improving web and mobile products to enhance usability and support evolving business needs.",
     responsibilities: [
-      "Redesigned the recruitment website to enhance clarity and user experience",
-      "Redesigned the HR mobile application for better usability and workflow efficiency",
-      "Designed additional UI screens based on client and stakeholder requirements",
+      "Redesigned existing interfaces to improve clarity and user experience",
+      "Designed additional UI screens based on stakeholder and client requirements",
       "Collaborated closely with BA and developers to understand business logic and user flows",
     ],
   },
@@ -50,13 +47,13 @@ export const projects: Project[] = [
   {
     id: 1,
     category: "Mobile App Design",
-    title: "Reely - Discover Movies Made Simple",
+    title: "Reely - Movie Streaming App",
     description:
       "A movie streaming app designed to help users easily discover, explore, and enjoy films they love. The app focuses on clear navigation, personalized recommendations, and a smooth watching experience across devices.",
-    date: "Oct - Nov, 2025",
+    date: "10/2025 - 11/2025",
     role: "UI/UX Designer",
     duration: "5-6 weeks",
-    tools: ["Figma", "Photoshop", "Illustrator"],
+    tools: ["Figma"],
     image: "/images/project-01.png",
     link: "https://www.behance.net/gallery/243737657/Reely-Movie-Streaming-App",
   },
@@ -66,10 +63,10 @@ export const projects: Project[] = [
     title: "FoodiOS - Smart Restaurant Ordering",
     description:
       "A seamless QR ordering experience that connects customers and staff in one real-time system. Built with a focus on clarity, speed, and operational efficiency to reduce manual processes and improve service flow.",
-    date: "Dec,2025 - Feb,2026",
+    date: "12/2025 - 02/2026",
     role: "UX/UI Designer",
     duration: "8-9 weeks",
-    tools: ["Figma", "Adobe XD"],
+    tools: ["Figma"],
     image: "/images/project-02.png",
     link: "https://www.behance.net/gallery/244896565/FoodiOS-Smart-Table-Ordering-for-Modern-Restaurants",
   },

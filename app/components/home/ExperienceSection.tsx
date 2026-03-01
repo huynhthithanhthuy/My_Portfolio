@@ -27,10 +27,41 @@ export default function ExperienceSection() {
   const exp = experiences[0];
 
   return (
-    <section id="experience" className="relative py-12 px-6 lg:px-12 xl:px-20 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
-      {/* Decorative Blobs */}
-      <div className="absolute top-20 left-[8%] w-40 h-40 rounded-full bg-gradient-to-br from-sky-200/40 to-sky-300/20 blur-3xl" />
-      <div className="absolute bottom-20 right-[10%] w-48 h-48 rounded-full bg-gradient-to-tl from-indigo-200/30 to-sky-200/20 blur-3xl" />
+    <section id="experience" className="relative py-24 px-6 lg:px-12 xl:px-20 bg-gradient-to-b from-white via-slate-50/50 to-white overflow-hidden">
+      {/* Decorative Gradient Shapes */}
+      <div className="absolute top-20 left-[5%] w-32 h-32 rounded-full bg-gradient-to-br from-sky-200/60 to-sky-300/40 blur-2xl" />
+      <div className="absolute top-10 right-[15%] w-24 h-24 rounded-full bg-gradient-to-bl from-indigo-200/50 to-sky-200/40 blur-xl" />
+      <div className="absolute top-1/2 -left-10 w-40 h-24 rounded-full bg-gradient-to-r from-sky-300/40 to-indigo-200/30 blur-2xl -rotate-12" />
+      <div className="absolute top-[40%] right-[8%] w-20 h-20 rounded-full bg-gradient-to-tl from-sky-200/50 to-sky-100/40 blur-xl" />
+      <div className="absolute bottom-32 left-[20%] w-28 h-28 rounded-full bg-gradient-to-tr from-indigo-200/40 to-sky-200/30 blur-2xl" />
+      <div className="absolute bottom-10 right-[5%] w-48 h-32 rounded-full bg-gradient-to-l from-sky-200/50 to-indigo-100/40 blur-3xl rotate-12" />
+
+      {/* Floating Dots */}
+      <motion.div
+        animate={{ y: [-10, 10, -10], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-40 left-[12%] w-4 h-4 rounded-full bg-sky-400/40"
+      />
+      <motion.div
+        animate={{ y: [10, -10, 10], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute top-60 right-[20%] w-3 h-3 rounded-full bg-indigo-400/40"
+      />
+      <motion.div
+        animate={{ y: [-8, 8, -8], opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        className="absolute bottom-40 left-[30%] w-5 h-5 rounded-full bg-sky-300/50"
+      />
+      <motion.div
+        animate={{ y: [8, -8, 8], opacity: [0.4, 0.6, 0.4] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        className="absolute bottom-60 right-[25%] w-3 h-3 rounded-full bg-sky-400/30"
+      />
+      <motion.div
+        animate={{ y: [-6, 6, -6], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute top-32 right-[35%] w-2 h-2 rounded-full bg-indigo-300/50"
+      />
 
       <div className="relative z-10 max-w-4xl mx-auto">
         {/* Header */}
@@ -88,12 +119,12 @@ export default function ExperienceSection() {
               {/* Responsibilities */}
               {exp.responsibilities && exp.responsibilities.length > 0 && (
                 <div>
-                  <h5 className="text-sm font-semibold text-slate-700 mb-3">Key Responsibilities</h5>
+                  <h5 className="text-md font-semibold text-slate-700 mb-3">Key Responsibilities</h5>
                   <ul className="space-y-2">
                     {exp.responsibilities.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3">
                         <span className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0" />
-                        <span className="text-sm text-slate-600">{item}</span>
+                        <span className="text-md text-slate-600">{item}</span>
                       </li>
                     ))}
                   </ul>

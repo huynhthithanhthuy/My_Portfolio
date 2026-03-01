@@ -46,7 +46,7 @@ export default function Navbar() {
           {/* Logo - Left */}
           <button
             onClick={() => scrollToSection('home')}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity z-10"
           >
             <div className={`relative w-10 h-10 rounded-full overflow-hidden shadow-lg transition-all duration-500 ${
               isScrolled 
@@ -114,40 +114,39 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2.5 rounded-full transition-all duration-300 ${
+            className={`md:hidden relative w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 z-10 ${
               isScrolled 
                 ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
                 : 'text-white/90 hover:text-white hover:bg-white/10'
             }`}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              // Close icon (X)
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              // Hamburger icon
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            <svg
+              className={`w-6 h-6 absolute transition-all duration-300 ${
+                isMobileMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'
+              }`}
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <svg
+              className={`w-6 h-6 absolute transition-all duration-300 ${
+                isMobileMenuOpen ? 'opacity-0 -rotate-90' : 'opacity-100 rotate-0'
+              }`}
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </button>
         </div>
       </div>
