@@ -34,7 +34,7 @@ const fadeInRight: Variants = {
 
 export default function WorksSection() {
   return (
-    <section id="works" className="py-24 px-6 lg:px-12 xl:px-20 bg-white">
+    <section id="works" className="py-12 px-6 lg:px-12 xl:px-20 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div

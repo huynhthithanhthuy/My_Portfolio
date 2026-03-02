@@ -50,7 +50,7 @@ export const projects: Project[] = [
     title: "Reely - Movie Streaming App",
     description:
       "A movie streaming app designed to help users easily discover, explore, and enjoy films they love. The app focuses on clear navigation, personalized recommendations, and a smooth watching experience across devices.",
-    date: "10/2025 - 11/2025",
+    date: "11/2025 - 12/2025",
     role: "UI/UX Designer",
     duration: "5-6 weeks",
     tools: ["Figma"],
@@ -89,7 +89,7 @@ export const skills: Skill[] = [
     description: "Creating simple prototypes to explore ideas.",
   },
   {
-    name: "Wireframing",
+    name: "HTML-CSS",
     icon: "✏️",
     description: "Structuring layouts and user flows.",
   },
