@@ -113,8 +113,9 @@ export default function HeroSection() {
                 </button>
                 
                 <a
-                  href="/HuynhThiThanhThuy_UXUI-Designer-CV.pdf"
-                  download
+                  href="https://drive.google.com/drive/folders/1lGc7X0VSzOU7pM_Ni7BdBxCudBpEK2ES?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-slate-800 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 hover:scale-105 transition-all shadow-lg shadow-black/10"
                 >
                   Download CV

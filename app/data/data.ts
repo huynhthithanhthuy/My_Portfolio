@@ -13,8 +13,8 @@ export const aboutData = {
   heading: "Passionate about creating",
   headingAccent: "meaningful experiences",
   description: [
-    "I'm a fourth-year Management Information Systems student at Ho Chi Minh City Open University and a fresher UX/UI Designer. I'm interested in how design, technology, and business come together to create meaningful digital products.",
-    "Through my studies and personal projects, I've gained experience in UX research, user flows, wireframing, and UI design. My background in information systems helps me understand product logic and how users interact with systems.",
+    "I am a UX/UI Designer with 3 months of internship experience, currently seeking an Intern/Fresher position in the UX/UI field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
+    "Through my studies in Management Information Systems and my internship, I have gained experience in UX research, user flows, wireframing, and UI design. My strengths lie in designing clear, user-friendly interfaces and understanding product logic. I hope to have more opportunities to learn, improve, and gain hands-on experience through real-world projects.",
   ],
   quickInfo: [
     { icon: "GraduationCap", label: "Management Information Systems" },
