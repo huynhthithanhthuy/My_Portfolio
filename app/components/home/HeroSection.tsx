@@ -113,7 +113,7 @@ export default function HeroSection() {
                 </button>
                 
                 <a
-                  href="/HuynhThiThanhThuy_UXUI-Designer_CV.pdf"
+                  href="/HuynhThiThanhThuy_UXUI-Designer-CV.pdf"
                   download
                   className="inline-flex items-center gap-2 bg-slate-800 text-white px-6 py-3 rounded-full font-medium hover:bg-slate-700 hover:scale-105 transition-all shadow-lg shadow-black/10"
                 >

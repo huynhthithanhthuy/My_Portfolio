@@ -89,7 +89,7 @@ export const skills: Skill[] = [
     description: "Creating simple prototypes to explore ideas.",
   },
   {
-    name: "HTML-CSS",
+    name: "Wireframing",
     icon: "✏️",
     description: "Structuring layouts and user flows.",
   },
