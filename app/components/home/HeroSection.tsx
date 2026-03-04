@@ -93,7 +93,7 @@ export default function HeroSection() {
                 variants={fadeInUp}
                 className="text-5xl sm:text-6xl font-bold text-white/90 tracking-tight mb-6"
               >
-                UX/UI Designer
+                UI/UX Designer
               </motion.p>
 
               <TypewriterText
