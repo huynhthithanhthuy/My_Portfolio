@@ -97,7 +97,7 @@ export default function HeroSection() {
               </motion.p>
 
               <TypewriterText
-                text="A 21-year-old UX/UI designer crafting simple experiences that connect people and technology seamlessly."
+                text="A 21-year-old UI/UX designer crafting simple experiences that connect people and technology seamlessly."
                 delay={500}
                 speed={30}
                 showCursor

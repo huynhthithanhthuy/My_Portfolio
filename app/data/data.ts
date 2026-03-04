@@ -13,7 +13,7 @@ export const aboutData = {
   heading: "Passionate about creating",
   headingAccent: "meaningful experiences",
   description: [
-    "I am a UX/UI Designer with 3 months of internship experience, currently seeking an Intern/Fresher position in the UX/UI field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
+    "I am a UI/UX Designer with 3 months of internship experience, currently seeking an Intern/Fresher position in the UX/UI field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
     "Through my studies in Management Information Systems and my internship, I have gained experience in UX research, user flows, wireframing, and UI design. My strengths lie in designing clear, user-friendly interfaces and understanding product logic. I hope to have more opportunities to learn, improve, and gain hands-on experience through real-world projects.",
   ],
   quickInfo: [
@@ -22,14 +22,14 @@ export const aboutData = {
   ],
   quote: "Good design is simple, purposeful, and focused on real user needs.",
   image: "/images/Profile.jpg",
-  imageAlt: "Thanh Thuy - UX/UI Designer",
+  imageAlt: "Thanh Thuy - UI/UX Designer",
 };
 
 
 export const experiences: Experience[] = [
   {
     id: 1,
-    role: "UX/UI Designer",
+    role: "UI/UX Designer",
     company: "Lac Viet Computing Corporation",
     period: "Oct 2025 - Jan 2026",
     type: "Internship",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     description:
       "A seamless QR ordering experience that connects customers and staff in one real-time system. Built with a focus on clarity, speed, and operational efficiency to reduce manual processes and improve service flow.",
     date: "12/2025 - 02/2026",
-    role: "UX/UI Designer",
+    role: "UI/UX Designer",
     duration: "8-9 weeks",
     tools: ["Figma"],
     image: "/images/project-02.png",
@@ -121,7 +121,7 @@ export const tools: Tool[] = [
 // Personal info - easy to update
 export const personalInfo = {
   name: "Thanh Thuy",
-  role: "UX/UI Designer",
+  role: "UI/UX Designer",
   email: "huynhthuyth29@email.com",
   tagline: "...",
   facebook: "https://www.facebook.com/bethyy29/",  
