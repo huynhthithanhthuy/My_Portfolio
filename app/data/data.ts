@@ -13,7 +13,7 @@ export const aboutData = {
   heading: "Passionate about creating",
   headingAccent: "meaningful experiences",
   description: [
-    "I am a UI/UX Designer with 3 months of internship experience, currently seeking an Intern/Fresher position in the UX/UI field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
+    "I am a UI/UX Designer with 3 months of internship experience, currently seeking an Intern/Fresher position in the UI/UX field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
     "Through my studies in Management Information Systems and my internship, I have gained experience in UX research, user flows, wireframing, and UI design. My strengths lie in designing clear, user-friendly interfaces and understanding product logic. I hope to have more opportunities to learn, improve, and gain hands-on experience through real-world projects.",
   ],
   quickInfo: [
@@ -34,11 +34,11 @@ export const experiences: Experience[] = [
     period: "Oct 2025 - Jan 2026",
     type: "Internship",
     description:
-      "At Lac Viet, I worked as a UX/UI Designer focusing on improving web and mobile products to enhance usability and support evolving business needs.",
+      "At LacViet, I worked as a UI/UX Designer on HR system projects:",
     responsibilities: [
-      "Redesigned existing interfaces to improve clarity and user experience",
-      "Designed additional UI screens based on stakeholder and client requirements",
-      "Collaborated closely with BA and developers to understand business logic and user flows",
+      "Redesigned the website and mobile application to enhance clarity and user experience.",
+      "Designed additional UI screens based on client and stakeholder requirements.",
+      "Collaborated closely with BA and developers to understand business logic and user flows.",
     ],
   },
 ];
@@ -66,7 +66,7 @@ export const projects: Project[] = [
     date: "12/2025 - 02/2026",
     role: "UI/UX Designer",
     duration: "8-9 weeks",
-    tools: ["Figma"],
+    tools: ["Figma", "Photoshop"],
     image: "/images/project-02.png",
     link: "https://www.behance.net/gallery/244896565/FoodiOS-Smart-Table-Ordering-for-Modern-Restaurants",
   },
@@ -122,7 +122,7 @@ export const tools: Tool[] = [
 export const personalInfo = {
   name: "Thanh Thuy",
   role: "UI/UX Designer",
-  email: "huynhthuyth29@email.com",
+  email: "huynhthuyth29@gmail.com",
   tagline: "...",
   facebook: "https://www.facebook.com/bethyy29/",  
   behance: "https://www.behance.net/thuhunhththanh",   
