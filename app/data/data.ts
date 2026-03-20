@@ -13,7 +13,7 @@ export const aboutData = {
   heading: "Passionate about creating",
   headingAccent: "meaningful experiences",
   description: [
-    "I am a UI/UX Designer with 3 months of internship experience, currently seeking an Intern/Fresher position in the UI/UX field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
+    "I am a UI/UX Designer with 5 months of internship experience, currently seeking an Intern/Fresher position in the UI/UX field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
     "Through my studies in Management Information Systems and my internship, I have gained experience in UX research, user flows, wireframing, and UI design. My strengths lie in designing clear, user-friendly interfaces and understanding product logic. I hope to have more opportunities to learn, improve, and gain hands-on experience through real-world projects.",
   ],
   quickInfo: [
@@ -34,11 +34,13 @@ export const experiences: Experience[] = [
     period: "Sep 2025 - Jan 2026",
     type: "Internship",
     description:
-      "At LacViet, I worked as a UI/UX Designer on HR system projects:",
+    "At LacViet, I worked as a UI/UX Designer on HR system products including recruitment websites, web portals, dashboards, and mobile applications.",
+
     responsibilities: [
-      "Redesigned the website and mobile application to enhance clarity and user experience.",
-      "Designed additional UI screens based on client and stakeholder requirements.",
-      "Collaborated closely with BA and developers to understand business logic and user flows.",
+      "Designed and improved UI/UX for recruitment websites, web portals, and HR dashboards.",
+      "Created UI screens based on client and stakeholder requirements.",
+      "Designed mobile portal interfaces for employee and manager usage.",
+      "Collaborated with BA and developers to define user flows and ensure feasibility.",
     ],
   },
 ];

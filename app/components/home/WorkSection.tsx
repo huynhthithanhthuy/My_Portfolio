@@ -64,9 +64,8 @@ export default function WorksSection() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
-                className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
-                  isEven ? "" : "lg:grid-flow-dense"
-                }`}
+                className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isEven ? "" : "lg:grid-flow-dense"
+                  }`}
               >
                 {/* Image Card */}
                 <motion.div
@@ -97,15 +96,40 @@ export default function WorksSection() {
                     </div>
 
                     {/* Image */}
-                    <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </div>
+                    {/* Image Card */}
+                    <motion.div
+                      variants={isEven ? fadeInLeft : fadeInRight}
+                      className={`group ${isEven ? "" : "lg:col-start-2"}`}
+                    >
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <div
+                          className="
+                            relative p-2 rounded-[2rem]
+                            bg-gradient-to-br from-slate-100 via-white to-slate-50
+                            shadow-[0_4px_24px_rgba(0,0,0,0.06)]
+                            group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+                            group-hover:-translate-y-2
+                            transition-all duration-500
+                            cursor-pointer
+                          "
+                        >
+                          <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
+                            <Image
+                              src={project.image}
+                              alt={project.title}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          </div>
+                        </div>
+                      </a>
+                    </motion.div>
                   </div>
                 </motion.div>
 
