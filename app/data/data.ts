@@ -31,7 +31,7 @@ export const experiences: Experience[] = [
     id: 1,
     role: "UI/UX Designer",
     company: "Lac Viet Computing Corporation",
-    period: "Oct 2025 - Jan 2026",
+    period: "Sep 2025 - Jan 2026",
     type: "Internship",
     description:
       "At LacViet, I worked as a UI/UX Designer on HR system projects:",
