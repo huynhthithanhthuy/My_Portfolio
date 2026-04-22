@@ -13,7 +13,7 @@ export const aboutData = {
   heading: "Passionate about creating",
   headingAccent: "meaningful experiences",
   description: [
-    "I am a UI/UX Designer with 5 months of internship experience, currently seeking an Intern/Fresher position in the UI/UX field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
+    "I am a UI/UX Designer with 4 months of internship experience, currently seeking an Intern/Fresher position in the UI/UX field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
     "Through my studies in Management Information Systems and my internship, I have gained experience in UX research, user flows, wireframing, and UI design. My strengths lie in designing clear, user-friendly interfaces and understanding product logic. I hope to have more opportunities to learn, improve, and gain hands-on experience through real-world projects.",
   ],
   quickInfo: [
