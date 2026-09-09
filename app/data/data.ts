@@ -13,15 +13,15 @@ export const aboutData = {
   heading: "Passionate about creating",
   headingAccent: "meaningful experiences",
   description: [
-    "I am a UI/UX Designer with 4 months of internship experience, currently seeking an Intern/Fresher position in the UI/UX field. I'm interested in how design, technology, and business come together to create meaningful digital products.",
-    "Through my studies in Management Information Systems and my internship, I have gained experience in UX research, user flows, wireframing, and UI design. My strengths lie in designing clear, user-friendly interfaces and understanding product logic. I hope to have more opportunities to learn, improve, and gain hands-on experience through real-world projects.",
+    "I'm a UI/UX Designer with 7 months of internship experience, currently seeking a Fresher role in UI/UX. I enjoy exploring how design, technology, and business intersect to create meaningful digital products.",
+    "My background in Management Information Systems, combined with hands-on internship work, has given me experience in UX research, user flows, wireframing, and UI design. I'm eager to keep learning and growing through real-world projects.",
   ],
   quickInfo: [
     { icon: "GraduationCap", label: "Management Information Systems" },
     { icon: "Sparkles", label: "3.6 GPA" },
   ],
   quote: "Good design is simple, purposeful, and focused on real user needs.",
-  image: "/images/Profile.jpg",
+  image: "/images/profile.jpg",
   imageAlt: "Thanh Thuy - UI/UX Designer",
 };
 
@@ -34,13 +34,29 @@ export const experiences: Experience[] = [
     period: "Sep 2025 - Jan 2026",
     type: "Internship",
     description:
-    "At LacViet, I worked as a UI/UX Designer on HR system products including recruitment websites, web portals, dashboards, and mobile applications.",
+      "At Lac Viet, I worked as a UI/UX Designer on HR system products including recruitment websites, web portals, dashboards, and mobile applications.",
 
     responsibilities: [
       "Designed and improved UI/UX for recruitment websites, web portals, and HR dashboards.",
       "Created UI screens based on client and stakeholder requirements.",
       "Designed mobile portal interfaces for employee and manager usage.",
       "Collaborated with BA and developers to define user flows and ensure feasibility.",
+    ],
+  },
+  {
+    id: 2,
+    role: "UI/UX Designer",
+    company: "DigiBird Corporation",
+    period: "May 2026 - August 2026",
+    type: "Internship",
+    description:
+      "At DigiBird, I worked as a UI/UX Designer, responsible for designing interfaces for Zalo Mini Apps and Mobile Mini Apps, including internal product templates and client-facing projects.",
+
+    responsibilities: [
+      "Designed UI/UX for Zalo Mini Apps based on client requirements.",
+      "Designed UI templates for the company's Mini App products.",
+      "Led UI/UX design for major projects, including a Zalo Mini App for Bridgestone and a mobile app for An Khai Hung.",
+      "Collaborated with BA, Dev, and BD teams to ensure designs met business requirements and were feasible to implement.",
     ],
   },
 ];
@@ -61,7 +77,7 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    category: "Dashboard UI",
+    category: "Web Design",
     title: "FoodiOS - Smart Restaurant Ordering",
     description:
       "A seamless QR ordering experience that connects customers and staff in one real-time system. Built with a focus on clarity, speed, and operational efficiency to reduce manual processes and improve service flow.",
@@ -71,6 +87,19 @@ export const projects: Project[] = [
     tools: ["Figma", "Photoshop"],
     image: "/images/project-02.png",
     link: "https://www.behance.net/gallery/244896565/FoodiOS-Smart-Table-Ordering-for-Modern-Restaurants",
+  },
+  {
+    id: 3,
+    category: "Landing Page",
+    title: "UIPrimer — UI/UX Learning Platform",
+    description:
+      "A landing page for a UI/UX learning platform that helps beginners study through real, interactive components instead of static theory. Built with a focus on clear structure, purposeful motion, and a design system that scales as new features are added.",
+    date: "08/2026",
+    role: "UI/UX Designer",
+    duration: "2 weeks",
+    tools: ["Figma"],
+    image: "/images/project-03.png",
+    link: "https://www.behance.net/gallery/255407329/UIPrimer-Landing-Page",
   },
 ];
 
@@ -108,7 +137,7 @@ export const tools: Tool[] = [
     logo: "/images/canva.png",
     description: "Quick visuals and simple layouts.",
   },
-    {
+  {
     name: "Capcut",
     logo: "/images/capcut.jpg",
     description: "Basic short-form video editing.",
@@ -126,8 +155,8 @@ export const personalInfo = {
   role: "UI/UX Designer",
   email: "huynhthuyth29@gmail.com",
   tagline: "...",
-  facebook: "https://www.facebook.com/bethyy29/",  
-  behance: "https://www.behance.net/thuhunhththanh",   
+  facebook: "https://www.facebook.com/bethyy29/",
+  behance: "https://www.behance.net/thuhunhththanh",
 };
 
 export const contactData: ContactData = {

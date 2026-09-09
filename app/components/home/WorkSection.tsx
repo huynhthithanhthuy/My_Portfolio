@@ -54,7 +54,7 @@ export default function WorksSection() {
         </motion.div>
 
         {/* Projects List */}
-        <div className="space-y-32">
+        <div className="space-y-16">
           {projects.map((project, index) => {
             const isEven = index % 2 === 0;
 
