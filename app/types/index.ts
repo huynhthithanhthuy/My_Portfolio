@@ -9,6 +9,7 @@ export interface Project {
   tools?: string[];
   image: string;
   link: string;
+  liveLink?: string;
 }
 
 export interface Experience {

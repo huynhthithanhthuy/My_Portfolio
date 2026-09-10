@@ -100,6 +100,7 @@ export const projects: Project[] = [
     tools: ["Figma"],
     image: "/images/project-03.png",
     link: "https://www.behance.net/gallery/255407329/UIPrimer-Landing-Page",
+    liveLink: "https://uiprimer.com", // thay bằng URL thật
   },
 ];
 

@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/app/data/data";
 
 // Animation variants
@@ -67,70 +68,53 @@ export default function WorksSection() {
                 className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isEven ? "" : "lg:grid-flow-dense"
                   }`}
               >
-                {/* Image Card */}
+                {/* Image Card — luôn dẫn tới case study (Behance) */}
                 <motion.div
                   variants={isEven ? fadeInLeft : fadeInRight}
                   className={`group ${isEven ? "" : "lg:col-start-2"}`}
                 >
-                  <div
-                    className="
-                      relative p-2 rounded-[2rem]
-                      bg-gradient-to-br from-slate-100 via-white to-slate-50
-                      shadow-[0_4px_24px_rgba(0,0,0,0.06)]
-                      group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                      group-hover:-translate-y-2
-                      transition-all duration-500
-                    "
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
                   >
-                    {/* Shimmer Effect */}
-                    <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
-                      <div
-                        className="
-                          absolute inset-0
-                          bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.8)_50%,transparent_100%)]
-                          translate-x-[-100%]
-                          group-hover:translate-x-[100%]
-                          transition-transform duration-1000 ease-in-out
-                        "
-                      />
-                    </div>
-
-                    {/* Image */}
-                    {/* Image Card */}
-                    <motion.div
-                      variants={isEven ? fadeInLeft : fadeInRight}
-                      className={`group ${isEven ? "" : "lg:col-start-2"}`}
+                    <div
+                      className="
+                        relative p-2 rounded-[2rem]
+                        bg-gradient-to-br from-slate-100 via-white to-slate-50
+                        shadow-[0_4px_24px_rgba(0,0,0,0.06)]
+                        group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]
+                        group-hover:-translate-y-2
+                        transition-all duration-500
+                        cursor-pointer
+                      "
                     >
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block"
-                      >
+                      {/* Shimmer Effect */}
+                      <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
                         <div
                           className="
-                            relative p-2 rounded-[2rem]
-                            bg-gradient-to-br from-slate-100 via-white to-slate-50
-                            shadow-[0_4px_24px_rgba(0,0,0,0.06)]
-                            group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                            group-hover:-translate-y-2
-                            transition-all duration-500
-                            cursor-pointer
+                            absolute inset-0
+                            bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.8)_50%,transparent_100%)]
+                            translate-x-[-100%]
+                            group-hover:translate-x-[100%]
+                            transition-transform duration-1000 ease-in-out
                           "
-                        >
-                          <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
-                            <Image
-                              src={project.image}
-                              alt={project.title}
-                              fill
-                              className="object-cover group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          </div>
-                        </div>
-                      </a>
-                    </motion.div>
-                  </div>
+                        />
+                      </div>
+
+                      {/* Image */}
+                      <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      </div>
+                    </div>
+                  </a>
                 </motion.div>
 
                 {/* Content */}
@@ -149,10 +133,30 @@ export default function WorksSection() {
                     <span className="text-sm text-slate-400">{project.date}</span>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-4xl lg:text-3xl font-bold text-slate-900 leading-tight">
-                    {project.title}
-                  </h3>
+                  {/* Title — icon mũi tên chỉ hiện khi có liveLink, dẫn tới sản phẩm thật */}
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-4xl lg:text-3xl font-bold text-slate-900 leading-tight">
+                      {project.title}
+                    </h3>
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="View live product"
+                        className="
+                          flex items-center justify-center
+                          w-8 h-8 rounded-full
+                          bg-sky-100 text-sky-600
+                          hover:bg-sky-500 hover:text-white
+                          transition-colors duration-300
+                          flex-shrink-0
+                        "
+                      >
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
 
                   {/* Description */}
                   <p className="text-slate-600 leading-relaxed text-md text-justify">
@@ -190,7 +194,7 @@ export default function WorksSection() {
                     </div>
                   )}
 
-                  {/* CTA Link */}
+                  {/* CTA — chỉ 1 nút View Detail, luôn dẫn tới case study */}
                   <a
                     href={project.link}
                     target="_blank"
