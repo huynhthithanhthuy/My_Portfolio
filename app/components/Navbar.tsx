@@ -1,209 +1,94 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { personalInfo } from "@/app/data/data";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Project", href: "/project" },
+];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-    setIsMobileMenuOpen(false);
-  };
+  const pathname = usePathname();
 
   return (
-    <nav
-      className={`
-        fixed top-0 left-0 right-0 z-50 
-        transition-all duration-500 ease-out
-        ${isScrolled 
-          ? 'bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5' 
-          : 'bg-transparent'
-        }
-      `}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 xl:px-20">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - Left */}
-          <button
-            onClick={() => scrollToSection('home')}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity z-10"
-          >
-            <div className={`relative w-10 h-10 rounded-full overflow-hidden shadow-lg transition-all duration-500 ${
-              isScrolled 
-                ? 'shadow-slate-500/20' 
-                : 'shadow-white/20'
-            }`}>
-              <Image
-                src="/images/Logo.png"
-                alt="Thanh Thuy Logo"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <span className={`font-semibold text-base tracking-tight transition-colors duration-500 ${
-              isScrolled ? 'text-slate-700' : 'text-white'
-            }`}>
-              Thanh Thuy
-            </span>
-          </button>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FDF5EF] border-b border-[#4A3B36]/15 overflow-hidden">
+      {/* Paper texture — đồng bộ với Hero để không lộ đường ranh giới */}
+      <div
+        className="absolute inset-0 opacity-45 pointer-events-none"
+        style={{
+          backgroundImage: `url('/images/paper-texture.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+        }}
+      />
 
-          {/* Desktop Navigation - Right */}
-          <div className="hidden md:flex items-center gap-1">
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('experience')}
-              className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection('works')}
-              className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Project
-            </button>
-            <button
-              onClick={() => scrollToSection('skills')}
-              className={`text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Skills
-            </button>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity z-10">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden">
+              <Image src="/images/Logo.png" alt={`${personalInfo.name} Logo`} fill className="object-cover" />
+            </div>
+            <span className="text-xl italic text-[#6B4A3F]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              {personalInfo.name}
+            </span>
+          </Link>
+
+          {/* Nav Links — tăng size */}
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                  className={`text-base font-semibold tracking-[0.2em] uppercase transition-colors duration-300 ${isActive ? "text-[#C97B93]" : "text-[#C97B93]/60 hover:text-[#C97B93]"
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden relative w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 z-10 ${
-              isScrolled 
-                ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-900/5' 
-                : 'text-white/90 hover:text-white hover:bg-white/10'
-            }`}
+            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full text-[#C97B93] hover:bg-[#F3C9CE]/25 transition-all duration-300 z-10"
             aria-label="Toggle menu"
           >
-            <svg
-              className={`w-6 h-6 absolute transition-all duration-300 ${
-                isMobileMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-90'
-              }`}
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            <svg
-              className={`w-6 h-6 absolute transition-all duration-300 ${
-                isMobileMenuOpen ? 'opacity-0 -rotate-90' : 'opacity-100 rotate-0'
-              }`}
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      <div
-        className={`
-          md:hidden overflow-hidden transition-all duration-300 ease-out
-          ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
-        `}
-      >
-        <div className={`px-6 pb-6 pt-2 ${
-          isScrolled 
-            ? 'bg-white/80 backdrop-blur-xl' 
-            : 'bg-slate-900/90 backdrop-blur-xl'
-        }`}>
+      {/* Mobile menu */}
+      <div className={`relative md:hidden overflow-hidden transition-all duration-300 ease-out ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className="px-6 pb-6 pt-2 bg-[#FDF5EF]">
           <div className="flex flex-col gap-1">
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('experience')}
-              className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection('works')}
-              className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Project
-            </button>
-            <button
-              onClick={() => scrollToSection('skills')}
-              className={`text-sm font-medium px-4 py-3 rounded-xl transition-all duration-200 text-left ${
-                isScrolled 
-                  ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' 
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Skills
-            </button>
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                  className={`text-sm font-semibold tracking-[0.2em] uppercase px-4 py-3 rounded-xl transition-all duration-200 text-left ${isActive ? "text-[#C97B93] bg-[#F3C9CE]/40" : "text-[#C97B93]/60 hover:text-[#C97B93] hover:bg-[#F3C9CE]/25"
+                    }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

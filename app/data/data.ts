@@ -21,7 +21,7 @@ export const aboutData = {
     { icon: "Sparkles", label: "3.6 GPA" },
   ],
   quote: "Good design is simple, purposeful, and focused on real user needs.",
-  image: "/images/profile.jpg",
+  image: "/images/profile-v1.png",
   imageAlt: "Thanh Thuy - UI/UX Designer",
 };
 

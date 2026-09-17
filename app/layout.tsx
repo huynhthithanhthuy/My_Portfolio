@@ -1,8 +1,26 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Cormorant_Garamond, Pinyon_Script } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import LayoutChrome from "./components/LayoutChrome";
+import Footer from "./components/layouts/Footer";
+import ContactSection from "./components/home/ContactSection";
 
+// Font chính cho heading, nav, button — cả bản đứng và italic
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+});
+
+// Font script trang trí — dùng hạn chế, chỉ cho logo hoặc điểm nhấn viết tay
+const pinyonScript = Pinyon_Script({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+});
+
+// Font body cho các đoạn văn dài
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -21,10 +39,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={poppins.variable}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${cormorant.variable} ${pinyonScript.variable}`}
+    >
       <body className="min-h-screen flex flex-col font-sans antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+        <LayoutChrome>{children}</LayoutChrome>
+        <ContactSection />
+        <Footer />
       </body>
     </html>
   );

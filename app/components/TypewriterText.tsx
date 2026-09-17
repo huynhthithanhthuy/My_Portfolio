@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface TypewriterTextProps {
@@ -9,6 +9,7 @@ interface TypewriterTextProps {
   speed?: number; // Tốc độ gõ mỗi ký tự (ms)
   className?: string;
   showCursor?: boolean;
+  style?: React.CSSProperties;
 }
 
 export default function TypewriterText({
@@ -17,6 +18,7 @@ export default function TypewriterText({
   speed = 100,
   className = "",
   showCursor = true,
+  style,
 }: TypewriterTextProps) {
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -51,6 +53,7 @@ export default function TypewriterText({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
       className={className}
+      style={style}
     >
       {displayedText}
       {showCursor && !isComplete && (

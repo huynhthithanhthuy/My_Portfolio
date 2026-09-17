@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/app/data/data";
+import Link from "next/link";
+import { getPublicProjects } from "@/services/projectService";
+import { Project } from "@/types/project";
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -15,208 +17,189 @@ const fadeInUp: Variants = {
   },
 };
 
-const fadeInLeft: Variants = {
-  hidden: { opacity: 0, x: -40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
+const stagger: Variants = {
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 
-const fadeInRight: Variants = {
-  hidden: { opacity: 0, x: 40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+// Số project hiển thị ở homepage (preview), phần còn lại xem ở /project
+const FEATURED_COUNT = 6;
+
+// Skeleton card — tông ấm, khớp bảng màu
+function SkeletonCard() {
+  return (
+    <div className="animate-pulse">
+      <div className="relative aspect-square overflow-hidden bg-[#F0E6D9] mb-5" />
+      <div className="h-6 w-3/4 rounded bg-[#F0E6D9] mb-2" />
+      <div className="h-4 w-full rounded bg-[#F0E6D9]" />
+    </div>
+  );
+}
 
 export default function WorksSection() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getPublicProjects()
+      .then(setProjects)
+      .catch((err) => {
+        console.error("Failed to fetch projects:", err);
+        setError("Could not load projects. Please try again later.");
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const featured = projects.slice(0, FEATURED_COUNT);
+
   return (
-    <section id="works" className="py-12 px-6 lg:px-12 xl:px-20 bg-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+    <section
+      id="works"
+      className="relative py-0 pb-20 px-6 lg:px-12 xl:px-20 bg-[#FDF5EF] overflow-hidden"
+    >
+      {/* Paper texture background */}
+      <div
+        className="absolute inset-0 opacity-45 pointer-events-none"
+        style={{
+          backgroundImage: `url('/images/paper-texture.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
+      {/* Banner tiêu đề — dựng bằng CSS thật, không dùng ảnh */}
+      <div className="relative mb-14">
+        {/* Dải ren trên */}
+        <div
+          className="relative z-10 w-screen left-1/2 -translate-x-1/2 h-10 bg-repeat-x"
+          style={{
+            backgroundImage: `url('/images/lace-border.png')`,
+            backgroundSize: "auto 100%",
+          }}
+        />
+
+        {/* Ruy băng nâu chứa tiêu đề */}
+        <div className="relative z-10 w-screen left-1/2 -translate-x-1/2 bg-[#6B4A3F] py-8 text-center">
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            className="text-lg sm:text-lg italic text-[#F6C8D3]"
+          >
+            Case Study
+          </motion.p>
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="text-3xl sm:text-2xl font-bold uppercase text-[#F5D8C1]"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            My Project
+          </motion.h2>
+        </div>
+
+        {/* Dải ren dưới */}
+        <div
+          className="relative z-10 w-screen left-1/2 -translate-x-1/2 h-10 bg-repeat-x"
+          style={{
+            backgroundImage: `url('/images/lace-border.png')`,
+            backgroundSize: "auto 100%",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+        {/* Loading state */}
+        {loading && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            {Array.from({ length: FEATURED_COUNT }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        )}
+
+        {/* Error state */}
+        {!loading && error && (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <p className="text-[#A98F86] text-base">{error}</p>
+          </div>
+        )}
+
+        {/* Empty state */}
+        {!loading && !error && featured.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <p className="text-[#A98F86] text-base">No projects to display yet.</p>
+          </div>
+        )}
+
+        {/* Project Cards — cùng UI với /project */}
+        {!loading && !error && featured.length > 0 && (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 items-stretch"
+          >
+            {featured.map((project) => (
+              <motion.article key={project.id} variants={fadeInUp} className="group h-full">
+                <Link
+                  href={`/project/${project.id}`}
+                  className="flex flex-col h-full transition-all duration-500 group-hover:-translate-y-1"
+                >
+                    {/* Ảnh */}
+                    <div className="relative aspect-square overflow-hidden bg-[#F0E6D9] mb-5">
+                      {project.thumbnail ? (
+                        <Image
+                          src={project.thumbnail}
+                          alt={project.title}
+                          fill
+                          unoptimized
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center">
+                          <span className="text-[#A98F86] text-sm">No image</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-[#4A3B36] leading-snug line-clamp-1">
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-[#6B5B56] leading-relaxed mt-2 line-clamp-2">
+                      {project.description}
+                    </p>
+                  </Link>
+                </motion.article>
+            ))}
+          </motion.div>
+        )}
+
+        {/* View all projects */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeInUp}
-          className="text-center mb-20"
+          className="flex justify-center mt-16"
         >
-          <h3 className="text-2xl text-sky-500 font-medium mb-4">Case Studies</h3>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Featured Works
-          </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Explore my latest design projects and case studies
-          </p>
+          <Link
+            href="/project"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            className="inline-flex items-center gap-2 bg-transparent text-[#C97B93] border border-[#C97B93] px-8 py-3.5 rounded-none text-sm font-bold tracking-[0.2em] uppercase hover:bg-[#C97B93] hover:text-white transition-all duration-300"
+          >
+            View all projects
+          </Link>
         </motion.div>
-
-        {/* Projects List */}
-        <div className="space-y-16">
-          {projects.map((project, index) => {
-            const isEven = index % 2 === 0;
-
-            return (
-              <motion.div
-                key={project.id}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${isEven ? "" : "lg:grid-flow-dense"
-                  }`}
-              >
-                {/* Image Card — luôn dẫn tới case study (Behance) */}
-                <motion.div
-                  variants={isEven ? fadeInLeft : fadeInRight}
-                  className={`group ${isEven ? "" : "lg:col-start-2"}`}
-                >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <div
-                      className="
-                        relative p-2 rounded-[2rem]
-                        bg-gradient-to-br from-slate-100 via-white to-slate-50
-                        shadow-[0_4px_24px_rgba(0,0,0,0.06)]
-                        group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)]
-                        group-hover:-translate-y-2
-                        transition-all duration-500
-                        cursor-pointer
-                      "
-                    >
-                      {/* Shimmer Effect */}
-                      <div className="absolute inset-0 rounded-[2rem] overflow-hidden">
-                        <div
-                          className="
-                            absolute inset-0
-                            bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.8)_50%,transparent_100%)]
-                            translate-x-[-100%]
-                            group-hover:translate-x-[100%]
-                            transition-transform duration-1000 ease-in-out
-                          "
-                        />
-                      </div>
-
-                      {/* Image */}
-                      <div className="relative aspect-[4/3] rounded-[1.5rem] overflow-hidden">
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </div>
-                    </div>
-                  </a>
-                </motion.div>
-
-                {/* Content */}
-                <motion.div
-                  variants={isEven ? fadeInRight : fadeInLeft}
-                  className={`space-y-5 ${isEven ? "" : "lg:col-start-1 lg:row-start-1"}`}
-                >
-                  {/* Category & Date */}
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="inline-flex items-center gap-2 bg-slate-100 rounded-full px-4 py-1.5">
-                      <span className="w-2 h-2 bg-emerald-400 rounded-full" />
-                      <span className="text-sm font-medium text-slate-600">
-                        {project.category}
-                      </span>
-                    </span>
-                    <span className="text-sm text-slate-400">{project.date}</span>
-                  </div>
-
-                  {/* Title — icon mũi tên chỉ hiện khi có liveLink, dẫn tới sản phẩm thật */}
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-4xl lg:text-3xl font-bold text-slate-900 leading-tight">
-                      {project.title}
-                    </h3>
-                    {project.liveLink && (
-                      <a
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="View live product"
-                        className="
-                          flex items-center justify-center
-                          w-8 h-8 rounded-full
-                          bg-sky-100 text-sky-600
-                          hover:bg-sky-500 hover:text-white
-                          transition-colors duration-300
-                          flex-shrink-0
-                        "
-                      >
-                        <ArrowUpRight className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-slate-600 leading-relaxed text-md text-justify">
-                    {project.description}
-                  </p>
-
-                  {/* Role & Duration */}
-                  <div className="flex flex-wrap gap-4 text-sm">
-                    {project.role && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-slate-400">Role:</span>
-                        <span className="text-slate-700 font-medium">{project.role}</span>
-                      </div>
-                    )}
-                    {project.duration && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-slate-400">Duration:</span>
-                        <span className="text-slate-700 font-medium">{project.duration}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Tools */}
-                  {project.tools && project.tools.length > 0 && (
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm text-slate-400">Tools:</span>
-                      {project.tools.map((tool, toolIndex) => (
-                        <span
-                          key={toolIndex}
-                          className="text-xs text-sky-600 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-100"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* CTA — chỉ 1 nút View Detail, luôn dẫn tới case study */}
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="
-                      inline-flex items-center gap-2
-                      text-slate-800 font-semibold
-                      group/link
-                      hover:text-slate-600
-                      transition-colors duration-300
-                    "
-                  >
-                    <span className="relative">
-                      View Detail
-                      <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-slate-300 group-hover/link:bg-slate-500 transition-colors duration-300" />
-                    </span>
-                  </a>
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
