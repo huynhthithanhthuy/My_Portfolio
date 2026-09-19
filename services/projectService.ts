@@ -16,26 +16,31 @@ import { Project } from "@/types/project";
  * Sắp xếp phía client: isPinned giảm dần → createdAt giảm dần
  */
 export async function getPublicProjects(): Promise<Project[]> {
-  const q = query(
-    collection(db, "projects"),
-    where("isVisible", "==", true)
-  );
+  try {
+    const q = query(
+      collection(db, "projects"),
+      where("isVisible", "==", true)
+    );
 
-  const snapshot = await getDocs(q);
-  const projects = snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })) as Project[];
+    const snapshot = await getDocs(q);
+    const projects = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Project[];
 
-  // Sắp xếp phía client: isPinned giảm dần -> createdAt giảm dần
-  return projects.sort((a, b) => {
-    if (a.isPinned !== b.isPinned) {
-      return a.isPinned ? -1 : 1;
-    }
-    const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
-    const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
-    return timeB - timeA;
-  });
+    // Sắp xếp phía client: isPinned giảm dần -> createdAt giảm dần
+    return projects.sort((a, b) => {
+      if (a.isPinned !== b.isPinned) {
+        return a.isPinned ? -1 : 1;
+      }
+      const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+      const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+      return timeB - timeA;
+    });
+  } catch (error) {
+    console.error("Error fetching public projects:", error);
+    return [];
+  }
 }
 
 /**

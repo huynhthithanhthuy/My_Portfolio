@@ -1,7 +1,7 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
+import { getAuth, Auth } from "firebase/auth";
+import { getFirestore, Firestore } from "firebase/firestore";
+import { getStorage, FirebaseStorage } from "firebase/storage";
 import { getAnalytics, isSupported, Analytics } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -15,11 +15,30 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase (Singleton pattern to prevent duplicate apps in SSR/HMR)
-const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+let app: FirebaseApp;
+if (getApps().length > 0) {
+  app = getApp();
+} else {
+  app = initializeApp(firebaseConfig);
+}
 
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+let auth: Auth | null = null;
+try {
+  if (firebaseConfig.apiKey) {
+    auth = getAuth(app);
+  }
+} catch (e) {
+  console.warn("Firebase Auth initialization skipped or failed:", e);
+}
+
+const db: Firestore = getFirestore(app);
+
+let storage: FirebaseStorage | null = null;
+try {
+  storage = getStorage(app);
+} catch (e) {
+  console.warn("Firebase Storage initialization skipped or failed:", e);
+}
 
 // Analytics runs only on client-side
 let analytics: Analytics | null = null;
@@ -28,7 +47,7 @@ if (typeof window !== "undefined") {
     if (supported) {
       analytics = getAnalytics(app);
     }
-  });
+  }).catch(() => {});
 }
 
 export { app, auth, db, storage, analytics };
