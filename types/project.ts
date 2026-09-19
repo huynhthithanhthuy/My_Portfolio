@@ -20,6 +20,7 @@ export interface Project {
   isPinned: boolean;
   isVisible: boolean;
   contentImages: ContentImage[];
+  viewsCount?: number;
   createdAt: Timestamp;
   updatedAt: Timestamp;
 }

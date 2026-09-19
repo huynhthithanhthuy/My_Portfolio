@@ -5,6 +5,8 @@ import {
   getDocs,
   query,
   where,
+  updateDoc,
+  increment,
 } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { Project } from "@/types/project";
@@ -54,5 +56,19 @@ export async function getProjectById(id: string): Promise<Project | null> {
   } catch (error) {
     console.error("Error fetching project by ID:", error);
     return null;
+  }
+}
+
+/**
+ * Tăng số lượt xem (viewsCount) của dự án trong Firestore thêm 1
+ */
+export async function incrementProjectViews(id: string): Promise<void> {
+  try {
+    const docRef = doc(db, "projects", id);
+    await updateDoc(docRef, {
+      viewsCount: increment(1),
+    });
+  } catch (error) {
+    console.error("Error incrementing project views:", error);
   }
 }

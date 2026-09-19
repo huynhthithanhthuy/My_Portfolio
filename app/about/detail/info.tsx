@@ -3,9 +3,9 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { aboutData } from "@/app/data/data";
-import { GraduationCap, Sparkles } from "lucide-react";
+import { GraduationCap, Sparkles, Award } from "lucide-react";
 
-const iconMap = { GraduationCap, Sparkles };
+const iconMap = { GraduationCap, Sparkles, Award };
 
 const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 24 },

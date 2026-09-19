@@ -19,6 +19,7 @@ export const aboutData = {
   quickInfo: [
     { icon: "GraduationCap", label: "Management Information Systems" },
     { icon: "Sparkles", label: "3.6 GPA" },
+    { icon: "Award", label: "TOEIC 855" },
   ],
   quote: "Good design is simple, purposeful, and focused on real user needs.",
   image: "/images/profile-v1.png",
@@ -158,6 +159,7 @@ export const personalInfo = {
   tagline: "...",
   facebook: "https://www.facebook.com/bethyy29/",
   behance: "https://www.behance.net/thuhunhththanh",
+  linkedin: "https://www.linkedin.com/in/hu%E1%BB%B3nh-thu%C3%BD-a33750378/",
 };
 
 export const contactData: ContactData = {

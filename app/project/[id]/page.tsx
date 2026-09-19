@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { motion, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { X, ArrowUpRight, Loader2 } from "lucide-react";
-import { getProjectById } from "@/services/projectService";
+import { X, ArrowUpRight, Loader2, ZoomIn } from "lucide-react";
+import { getProjectById, incrementProjectViews } from "@/services/projectService";
 import { Project } from "@/types/project";
 
 const fadeInUp: Variants = {
@@ -48,6 +48,7 @@ export default function DetailProject() {
     const [project, setProject] = useState<Project | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
     useEffect(() => {
         if (!id) return;
@@ -56,6 +57,12 @@ export default function DetailProject() {
             .then((data) => {
                 if (data) {
                     setProject(data);
+                    // Tăng số lượt xem ngầm trong Firestore (chỉ đếm 1 lần mỗi phiên truy cập)
+                    const viewedKey = `viewed_project_${id}`;
+                    if (typeof window !== "undefined" && !sessionStorage.getItem(viewedKey)) {
+                        sessionStorage.setItem(viewedKey, "true");
+                        incrementProjectViews(id);
+                    }
                 } else {
                     setError("Project not found.");
                 }
@@ -66,6 +73,26 @@ export default function DetailProject() {
             })
             .finally(() => setLoading(false));
     }, [id]);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                setSelectedImage(null);
+            }
+        };
+
+        if (selectedImage) {
+            document.body.style.overflow = "hidden";
+            window.addEventListener("keydown", handleKeyDown);
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [selectedImage]);
 
     if (loading) {
         return (
@@ -120,7 +147,7 @@ export default function DetailProject() {
     return (
         <main className="relative min-h-screen" style={{ backgroundColor: PAGE_BG }}>
             {/* Sticky Nút đóng — luôn nằm ở top khi cuộn, có hiệu ứng zoom & xoay khi hover */}
-            <div className="sticky top-6 z-50 flex justify-center pt-6 pb-4 pointer-events-none">
+            <div className="sticky top-6 z-40 flex justify-center pt-6 pb-4 pointer-events-none">
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -182,7 +209,8 @@ export default function DetailProject() {
                             whileInView="visible"
                             viewport={{ once: true, margin: "-60px" }}
                             variants={imageBounceIn}
-                            className="relative mt-14 aspect-[16/9] overflow-hidden bg-[#F0E6D9] shadow-[0_20px_45px_rgba(74,59,54,0.18)]"
+                            onClick={() => setSelectedImage(project.thumbnail)}
+                            className="relative mt-14 aspect-[16/9] overflow-hidden bg-[#F0E6D9] shadow-[0_20px_45px_rgba(74,59,54,0.18)] cursor-zoom-in group"
                         >
                             <Image
                                 src={project.thumbnail}
@@ -190,8 +218,13 @@ export default function DetailProject() {
                                 fill
                                 priority
                                 unoptimized
-                                className="object-cover"
+                                className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
                             />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-full bg-white/85 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center text-[#4A3B36] shadow-lg scale-90 group-hover:scale-100">
+                                    <ZoomIn className="w-6 h-6 text-[#4A3B36]" />
+                                </div>
+                            </div>
                         </motion.div>
                     )}
                 </div>
@@ -240,7 +273,8 @@ export default function DetailProject() {
                                     whileInView="visible"
                                     viewport={{ once: true, margin: "-80px" }}
                                     variants={imageBounceIn}
-                                    className="relative overflow-hidden bg-[#F0E6D9]"
+                                    onClick={() => setSelectedImage(img.url)}
+                                    className="relative overflow-hidden bg-[#F0E6D9] cursor-zoom-in group"
                                 >
                                     <Image
                                         src={img.url}
@@ -248,14 +282,62 @@ export default function DetailProject() {
                                         width={1600}
                                         height={1200}
                                         unoptimized
-                                        className="w-full h-auto object-cover"
+                                        className="w-full h-auto object-cover group-hover:scale-[1.01] transition-transform duration-500"
                                     />
+                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                        <div className="w-12 h-12 rounded-full bg-white/85 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center text-[#4A3B36] shadow-lg scale-90 group-hover:scale-100">
+                                            <ZoomIn className="w-6 h-6 text-[#4A3B36]" />
+                                        </div>
+                                    </div>
                                 </motion.div>
                             ))}
                         </div>
                     )}
                 </div>
             </section>
+
+            {/* Lightbox / Fullscreen Image Zoom Modal */}
+            <AnimatePresence>
+                {selectedImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        onClick={() => setSelectedImage(null)}
+                        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out select-none"
+                    >
+                        {/* Nút đóng Lightbox */}
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedImage(null);
+                            }}
+                            className="absolute top-6 right-6 z-10 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 border border-white/30 text-white flex items-center justify-center transition-all duration-200"
+                            aria-label="Close zoomed image"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+
+                        {/* Thẻ ảnh Zoom */}
+                        <motion.div
+                            initial={{ scale: 0.92, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.92, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative max-w-[95vw] max-h-[92vh] flex items-center justify-center"
+                        >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                                src={selectedImage}
+                                alt="Zoomed detail"
+                                className="max-w-full max-h-[92vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </main>
     );
 }

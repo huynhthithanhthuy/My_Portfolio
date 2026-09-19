@@ -31,7 +31,7 @@ export default function Navbar() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 xl:px-20">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo (Left) */}
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity z-10">
             <div className="relative w-10 h-10 rounded-full overflow-hidden">
               <Image src="/images/Logo.png" alt={`${personalInfo.name} Logo`} fill className="object-cover" />
@@ -41,7 +41,7 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Nav Links — tăng size */}
+          {/* Nav Links — Căn giữa */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -59,14 +59,51 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full text-[#C97B93] hover:bg-[#F3C9CE]/25 transition-all duration-300 z-10"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Social Links (Right) */}
+          <div className="flex items-center gap-1 z-10">
+
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:opacity-80 transition-opacity flex items-center p-1"
+            >
+              <Image
+                src="/images/linkedin.png"
+                alt="LinkedIn"
+                width={24}
+                height={24}
+                className="w-8 h-8 object-contain"
+              />
+            </a>
+            <a
+              href={personalInfo.behance}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Behance"
+              className="hover:opacity-80 transition-opacity flex items-center p-1"
+            >
+              <Image
+                src="/images/behance.png"
+                alt="Behance"
+                width={24}
+                height={24}
+                className="w-8 h-8 object-contain"
+              />
+            </a>
+
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full text-[#C97B93] hover:bg-[#F3C9CE]/25 transition-all duration-300 ml-1"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+
+
+          </div>
         </div>
       </div>
 

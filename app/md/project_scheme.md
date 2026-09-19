@@ -30,6 +30,7 @@ Tài liệu này mô tả cấu trúc dữ liệu, API Firestore, và toàn bộ
 | `isPinned` | `boolean` | ✅ | Ghim lên đầu danh sách portfolio |
 | `isVisible` | `boolean` | ✅ | Hiển thị / ẩn dự án trên portfolio |
 | `contentImages` | `ContentImage[]` | ✅ | Mảng ảnh nội dung chi tiết dự án |
+| `viewsCount` | `number` | ❌ | Số lượt xem chi tiết dự án (chỉ xem ở trang Admin, ẩn ở Portfolio) |
 | `createdAt` | `Timestamp` | Auto | Thời điểm tạo (serverTimestamp) |
 | `updatedAt` | `Timestamp` | Auto | Thời điểm cập nhật cuối (serverTimestamp) |
 
